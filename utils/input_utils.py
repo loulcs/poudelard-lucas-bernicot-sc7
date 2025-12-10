@@ -39,5 +39,9 @@ def demander_nombre(message, min_val=None, max_val=None):
                     continue
                 return val
 
+def load_fichier(chemin_fichier):
+    with open(chemin_fichier, "r",encoding='utf-8') as fichier:
+        donnee=json.load(fichier)
+    return donnee
 
 
