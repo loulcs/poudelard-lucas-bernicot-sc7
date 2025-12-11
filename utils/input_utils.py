@@ -44,4 +44,23 @@ def load_fichier(chemin_fichier):
         donnee=json.load(fichier)
     return donnee
 
+def demander_choix(message, options):
+    print(message)
+
+
+    n = 1
+    for i in options:
+        print(str(n) + ". " + options)
+        n += 1
+
+     choix = demander_nombre("Votre choix : ", 1, len(options))
+    return options[choix - 1]
+
+
+
+
+
+
+
+
 
