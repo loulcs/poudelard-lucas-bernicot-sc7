@@ -15,3 +15,29 @@ def ajouter_objet(joueur, cle, objet):
     joueur[cle].append(objet)
     return joueur
 
+
+def afficher_personnage(joueur):
+    print("Profil du personnage:")
+    for i in joueur:
+        if isinstance(joueur[i], list):
+            for j in joueur[i]:
+                print(j,end='')
+        elif isinstance(joueur[i], dict):
+            for elem in joueur[i]:
+                print(elem,":",joueur[i][elem])
+        else:
+            print(i,":",joueur[i])
+
+
+
+
+
+
+
+
+
+
+        print(i,":",joueur[i])
+
+
+

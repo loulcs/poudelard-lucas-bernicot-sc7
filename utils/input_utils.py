@@ -52,6 +52,11 @@ def demander_choix(message, options):
     return options[choix - 1]
 
 
+def afficher_personnage(joueur):
+
+
+
+
 
 
 
