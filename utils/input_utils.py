@@ -46,9 +46,6 @@ def load_fichier(chemin_fichier):
 
 def demander_choix(message, options):
     print(message)
-
-
-
     for i in range(len(options)):
         print(i + ". " + options[i])
     choix = demander_nombre("Votre choix : ", 1, len(options))
