@@ -20,4 +20,10 @@ def afficher_maison_gagnante(maisons):
         for g in gagnant:
             print(g,end="")
 
-def
+def repartition_maison(joueur,question):
+    dico_score={"Gryffondor":0, "Serpentard":0, "Poufsouffle":0, "Serdaigle":0}
+    attribut=joueur["Atrributs"]
+    lien = {"Courage":"Gryffondor","Ambition":"Serpentard","Loyauté": "Poufsouffle", "Intelligence":"Serdaigle""}
+    for elem in atrribut :
+        dico_score[lien[elem]]+=2*attribut[elem]
+
