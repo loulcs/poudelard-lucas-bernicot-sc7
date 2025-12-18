@@ -31,7 +31,7 @@ def demander_nombre(message, min_val=None, max_val=None):
                 for c in val_input[debut:]:
                     val=val*10+ (ord(c)-ord("0"))
                 val*=signe
-                if val<min_val and min_val is not None :
+                if min_val is not None and val<min_val:
                     print("Erreur : saisie non valide")
                     continue
                 if max_val is not None and val>max_val:
@@ -50,9 +50,6 @@ def demander_choix(message, options):
         print(i + ". " + options[i])
     choix = demander_nombre("Votre choix : ", 1, len(options))
     return options[choix - 1]
-
-
-def afficher_personnage(joueur):
 
 
 
