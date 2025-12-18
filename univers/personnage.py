@@ -37,7 +37,7 @@ def afficher_personnage(joueur):
 
 
 
-        print(i,":",joueur[i])
+
 
 
 
