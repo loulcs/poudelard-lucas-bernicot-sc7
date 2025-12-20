@@ -24,7 +24,7 @@ def repartition_maison(joueur,questions):
     dico_score={"Gryffondor":0, "Serpentard":0, "Poufsouffle":0, "Serdaigle":0}
     attribut=joueur["Atrributs"]
     lien = {"Courage":"Gryffondor","Ambition":"Serpentard","Loyauté": "Poufsouffle", "Intelligence":"Serdaigle""}
-    for elem in atrribut :
+    for elem in attribut :
         dico_score[lien[elem]]+=2*attribut[elem]
     indice=0
     for tuples in questions:
