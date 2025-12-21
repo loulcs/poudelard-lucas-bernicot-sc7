@@ -61,8 +61,4 @@ def quiz_magie(joueur, chemin_fichier="data/quiz_magie.json"):
             print(f"Mauvaise réponse. La bonne réponse était : {q['reponse']}\n")
 
     print(f"Score obtenu : {score_quiz} points")
-    if "Score" not in joueur:
-        joueur["Score"] = 0
-    joueur["Score"] += score_quiz
 
-    return joueur
