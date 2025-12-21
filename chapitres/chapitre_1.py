@@ -19,8 +19,7 @@ def cree_personnage():
        message="Choisissez votre niveau de"+ elem +"(1-10):"
        nombre = demander_nombre(message, 1, 10)
        joueur["Attributs"][elem] = nombre
-
-        afficher_personnage(joueur)
+       afficher_personnage(joueur)
 
 def recevoir_lettre():
    print("Une chouette traverse la fenêtre et vous apporte une lettre scellée du sceau de Poudlard... ")
