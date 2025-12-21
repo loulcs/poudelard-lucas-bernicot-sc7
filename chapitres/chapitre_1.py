@@ -34,8 +34,72 @@ def recevoir_lettre():
        exit()
 
 def renconter_hagrid(personnage):
-   print(personnage+ 'Salut Harry ! Je suis venu t’aider à faire tes achats sur le Chemin de Traverse.' )
+   print('Hagrid : Salut Harry ! Je suis venu t’aider à faire tes achats sur le Chemin de Traverse.' )
    reponse=demander_choix("Voulez-vous suivre Hagrid ?",["Oui","Non"] )
    if reponse=="Non":
        print("Hagrid insiste gentiment et vous entraîne quand même avec lui!")
 
+import json
+
+def acheter_fournitures(personnage):
+    with open("data/inventaire.json", "r", encoding="utf-8") as f:
+        inventaire = json.load(f)
+
+    objets_obligatoires = ["Baguette magique","Robe de sorcier","Manuel de potions"]
+
+    print("Bienvenue sur le Chemin de Traverse !")
+    print("Catalogue des objets disponibles :")
+    options = []
+    for cle in inventaire:
+        nom = inventaire[cle][0]
+        prix = inventaire[cle][1]
+        options.append(nom)
+        print(cle + ". " + nom + " - " + str(prix) + " galions")
+
+    while objets_obligatoires != []:
+        print("\nVous avez", personnage["Argent"], "galions.")
+        print("Objets obligatoires restant à acheter :")
+        for obj in objets_obligatoires:
+            print("-", obj)
+
+        choix = demander_choix(
+            "Choisissez un objet à acheter (ou tapez 'stop' pour finir) :",
+            options + ["stop"]
+        )
+        if choix == "stop":
+            break
+        prix = 0
+        for cle in inventaire:
+            if inventaire[cle][0] == choix:
+                prix = inventaire[cle][1]
+
+        if personnage["Argent"] < prix:
+            print("Vous n'avez pas assez d'argent. Partie perdue.")
+            exit()
+
+        modifier_argent(personnage, -prix)
+        ajouter_objet(personnage, "Inventaire", choix)
+        print("Vous avez acheté :", choix, "(-" + str(prix) + " galions).")
+
+        if choix in objets_obligatoires:
+            objets_obligatoires.remove(choix)
+
+    if objets_obligatoires != []:
+        print("Vous avez oublié des objets obligatoires :", objets_obligatoires)
+        print("Partie perdue.")
+        exit()
+
+    prix_animaux = {"Chouette": 20,"Chat": 15,"Rat": 10,"Crapaud": 5}
+    print("\nVous avez", personnage["Argent"], "galions.")
+    animal = demander_choix("Choisissez votre animal de compagnie :", list(prix_animaux.keys()))
+
+    if personnage["Argent"] < prix_animaux[animal]:
+        print("Vous n'avez pas assez d'argent. Partie perdue.")
+        exit()
+
+    modifier_argent(personnage, -prix_animaux[animal])
+    ajouter_objet(personnage, "Inventaire", animal)
+    print("Vous avez choisi :", animal)
+
+    print("Tous les objets obligatoires ont été achetés avec succès !")
+    afficher_personnage(personnage)

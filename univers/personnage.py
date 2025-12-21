@@ -11,6 +11,7 @@ def initialiser_personnage(nom, prenom, attributs):
 def modifier_argent(joueur, montant):
     joueur["Argent"] += montant
     return joueur
+
 def ajouter_objet(joueur, cle, objet):
     joueur[cle].append(objet)
     return joueur
