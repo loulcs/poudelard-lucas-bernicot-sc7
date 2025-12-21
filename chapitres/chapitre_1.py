@@ -20,6 +20,7 @@ def cree_personnage():
        nombre = demander_nombre(message, 1, 10)
        joueur["Attributs"][elem] = nombre
        afficher_personnage(joueur)
+       return joueur
 
 def recevoir_lettre():
    print("Une chouette traverse la fenêtre et vous apporte une lettre scellée du sceau de Poudlard... ")
@@ -103,3 +104,13 @@ def acheter_fournitures(personnage):
 
     print("Tous les objets obligatoires ont été achetés avec succès !")
     afficher_personnage(personnage)
+
+    def lancer_chapitre_1():
+        introduction()
+        personnage = cree_personnage()
+        recevoir_lettre()
+        renconter_hagrid(personnage)
+        acheter_fournitures(personnage)*
+        print("Fin du Chapitre 1 ! Votre aventure commence à Poudlard...")
+        afficher_personnage(personnage)
+
