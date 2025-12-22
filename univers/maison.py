@@ -41,7 +41,7 @@ def repartition_maison(joueur,questions):
     for maison in dico_score:
         if dico_score[maison]==score_max:
             maisons_choisi.append(maison)
-    if len(maisons_choisi)=1:
+    if len(maisons_choisi)==1:
         return maisons_choisi[0]
     else:
         print("Hum, c'est difficile!Je vois du courage, de l'intelligence mais aussi de l'ambition...")

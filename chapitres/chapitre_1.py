@@ -2,6 +2,9 @@ from univers.personnage import afficher_personnage
 from univers.personnage import initialiser_personnage
 from utils.input_utils import demander_nombre
 from utils.input_utils import demander_choix
+from univers.personnage import modifier_argent
+from univers.personnage import ajouter_objet
+
 
 
 def introduction():
@@ -110,7 +113,7 @@ def acheter_fournitures(personnage):
         personnage = cree_personnage()
         recevoir_lettre()
         renconter_hagrid(personnage)
-        acheter_fournitures(personnage)*
+        acheter_fournitures(personnage)
         print("Fin du Chapitre 1 ! Votre aventure commence à Poudlard...")
         afficher_personnage(personnage)
 

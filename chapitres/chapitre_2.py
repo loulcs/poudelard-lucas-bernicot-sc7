@@ -1,6 +1,7 @@
-from socket import fromfd
-
 from utils.input_utils import demander_choix
+from univers.maison import repartition_maison
+from univers.personnage import afficher_personnage
+
 def rencontrer_amis(joueur):
     print("Vous montez à bord du Poudlard Express. Le train démarre lentement en direction du Nord...")
     print("Un garçon roux entre dans votre compartiment, l’air amical.")
@@ -83,6 +84,7 @@ def installation_salle_commune(joueur):
         maisons = json.load(f)
 
     maison = joueur["Maison"]
+    maison_joueur =maisons[maison]
     info_maison = maisons[maison_joueur]
     description = info_maison["description"]
     message_installation = info_maison["message_installation"]
@@ -102,5 +104,7 @@ def lancer_chapitre_2(personnage):
     print("Résumé de votre personnage à la fin du chapitre 2 :")
     afficher_personnage(personnage)
     print("Fin du Chapitre 2 ! Les cours à Poudlard vont bientôt commencer...")
+
+
 
 
