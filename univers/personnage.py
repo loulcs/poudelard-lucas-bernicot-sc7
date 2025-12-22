@@ -6,7 +6,7 @@ def initialiser_personnage(nom, prenom, attributs):
     "Inventaire":[],
     "Sortilèges": [],
     "Attributs": attributs}
-    return dico_perso
+    return joueur
 
 def modifier_argent(joueur, montant):
     joueur["Argent"] += montant
@@ -20,12 +20,14 @@ def ajouter_objet(joueur, cle, objet):
 def afficher_personnage(joueur):
     print("Profil du personnage:")
     for i in joueur:
+        print(i,end=':')
         if isinstance(joueur[i], list):
             for j in joueur[i]:
-                print(j,end='')
+                print(','.join(joueur[i]))
         elif isinstance(joueur[i], dict):
+            print("")
             for elem in joueur[i]:
-                print(elem,":",joueur[i][elem])
+                print('-',elem,":",joueur[i][elem])
         else:
             print(i,":",joueur[i])
 
