@@ -8,6 +8,19 @@ def actualiser_points_maison(maisons, nom_maison, points):
         print("Moins", points, "points pour", nom_maison, "!")
     return maisons
 
+def actualiser_points_maison(maisons, nom_maison, points):
+    if not nom_maison in maisons:
+      print('la maison ', nom_maison,  ' est introuvable')
+      return
+    if points>=0:
+        print("Plus ", end='')
+    else:
+        print("Moins ", end='')
+     maisons[nom_maison]+= points
+    print(abs(points),"points pour",nom_maison,"!")
+    print(' Nouveau total: ', maisons[nom_maison])
+    return maisons
+
 def afficher_maison_gagnante(maisons):
     max=0
     gagnant=[]
@@ -19,20 +32,20 @@ def afficher_maison_gagnante(maisons):
             gagnant.append(nom)
     if len(gagnant)>1:
         for g in gagnant:
-            print(g,end="")
+            print(g,end=" ")
 import random
 def repartition_maison(joueur,questions):
     dico_score={"Gryffondor":0, "Serpentard":0, "Poufsouffle":0, "Serdaigle":0}
-    attribut=joueur["Atrributs"]
-    lien = {"Courage":"Gryffondor","Ambition":"Serpentard","Loyauté": "Poufsouffle", "Intelligence":"Serdaigle""}
+    attribut=joueur["Attributs"]
+    lien = {"courage":"Gryffondor","ambition":"Serpentard","loyauté": "Poufsouffle", "intelligence":"Serdaigle"}
     for elem in attribut :
         dico_score[lien[elem]]+=2*attribut[elem]
     indice=0
-    for tuples in questions:
-        reponse = demander_choix(tuples[0],tuples[1])
-        while tuples[1][indice]!=reponse:
+    for tuple in questions:
+        reponse = demander_choix(tuple[0],tuple[1])
+        while tuple[1][indice]!=reponse:
             indice+=1
-        dico_score[tuples[2][indice]]+=3
+        dico_score[tuple[2][indice]]+=3
     score_max = 0
     for val in dico_score.values():
         if val>score_max:
