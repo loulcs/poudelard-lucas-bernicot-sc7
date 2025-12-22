@@ -1,3 +1,4 @@
+from utils.input_utils import demander_choix
 def actualiser_points_maison(maisons, nom_maison, points):
     if points>=0:
         maisons[nom_maison]+= points
@@ -43,7 +44,7 @@ def repartition_maison(joueur,questions):
     if len(maisons_choisi)=1:
         return maisons_choisi[0]
     else:
-        print("Hum, c'est difficile!Je vois du courage, de l'intelligence mais aussi de l'ambition..."
+        print("Hum, c'est difficile!Je vois du courage, de l'intelligence mais aussi de l'ambition...")
         maison_finale=random.choice(maisons_choisi)
         return maison_finale
 
