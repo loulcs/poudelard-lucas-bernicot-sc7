@@ -1,12 +1,4 @@
 from utils.input_utils import demander_choix
-def actualiser_points_maison(maisons, nom_maison, points):
-    if points>=0:
-        maisons[nom_maison]+= points
-        print("Plus",points,"points pour",nom_maison,"!")
-    else:
-        maisons[nom_maison]-= points
-        print("Moins", points, "points pour", nom_maison, "!")
-    return maisons
 
 def actualiser_points_maison(maisons, nom_maison, points):
     if not nom_maison in maisons:
@@ -19,7 +11,7 @@ def actualiser_points_maison(maisons, nom_maison, points):
      maisons[nom_maison]+= points
     print(abs(points),"points pour",nom_maison,"!")
     print(' Nouveau total: ', maisons[nom_maison])
-    return maisons
+    return
 
 def afficher_maison_gagnante(maisons):
     max=0
@@ -40,9 +32,9 @@ def repartition_maison(joueur,questions):
     lien = {"courage":"Gryffondor","ambition":"Serpentard","loyauté": "Poufsouffle", "intelligence":"Serdaigle"}
     for elem in attribut :
         dico_score[lien[elem]]+=2*attribut[elem]
-    indice=0
     for tuple in questions:
         reponse = demander_choix(tuple[0],tuple[1])
+        indice = 0
         while tuple[1][indice]!=reponse:
             indice+=1
         dico_score[tuple[2][indice]]+=3

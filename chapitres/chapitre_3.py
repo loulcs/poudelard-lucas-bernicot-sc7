@@ -1,10 +1,7 @@
 import json
 import random
 
-from univers.maison import actualiser_points_maison
-
-
-def apprendre_sorts(joueur, chemin_fichier="data/sorts.json"):
+def apprendre_sorts(joueur, chemin_fichier="data/sort.json"):
     # Chargement des sorts depuis le fichier JSON
     with open(chemin_fichier, "r", encoding="utf-8") as f:
         tous_sorts = json.load(f)
@@ -35,7 +32,6 @@ def apprendre_sorts(joueur, chemin_fichier="data/sorts.json"):
     print("Voici les sortilèges que tu maîtrises désormais :")
     for sort in sort_selectionnes:
         print(f"- {sort['nom']} ({sort['type']}) : {sort['description']}")
-
     return joueur
 
 
@@ -64,15 +60,17 @@ def quiz_magie(joueur, chemin_fichier="data/quiz_magie.json"):
             print(f"Mauvaise réponse. La bonne réponse était : {q['reponse']}\n")
 
     print(f"Score obtenu : {score_quiz} points")
+    return score_quiz
 
 from univers.maison import actualiser_points_maison
 from univers.maison import afficher_maison_gagnante
 from univers.personnage import afficher_personnage
 
-def lancer_chapitre_3(joueur, maison):
+def lancer_chapitre_3(personnage, maison):
     apprendre_sorts(maison)
     quiz_magie(maison)
     actualiser_points_maison(maison)
     afficher_maison_gagnante(maison)
-    afficher_personnage(joueur)
+    afficher_personnage(personnage)
+    return
 

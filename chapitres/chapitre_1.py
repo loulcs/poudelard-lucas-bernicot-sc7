@@ -12,7 +12,7 @@ def introduction():
     print("Vous êtes un jeune sorcier qui s'apprête à vivre sa première année à Poudlard.")
     print("Votre aventure commence maintenant !")
 
-def cree_personnage():
+def creer_personnage():
    prenom = input("Entrez le prenom de votre personnage : ")
    nom = input("Entrez le nom de votre personnage : ")
    attribut={"courage":0,"intelligence":0,"loyauté":0,"ambition":0}
@@ -22,16 +22,17 @@ def cree_personnage():
        message="Choisissez votre niveau de"+ elem +"(1-10):"
        nombre = demander_nombre(message, 1, 10)
        joueur["Attributs"][elem] = nombre
-       afficher_personnage(joueur)
-       return joueur
+    afficher_personnage(joueur)
+   return joueur
 
 def recevoir_lettre():
    print("Une chouette traverse la fenêtre et vous apporte une lettre scellée du sceau de Poudlard... ")
    input()
    print(""" Cher élève,
          Nous avons le plaisir de vous informer que vous avez été admis à l'école de sorcellerie de Poudlard ! """)
-   reponse=demander_choix( "Souhaitez-vous accepter cette invitation et partir pour Poudlard ?",["Oui, bien sûr !"," Non, je préfère rester avec l’oncle Vernon... "])
-   if reponse!="Oui, bien sûr ! ":
+   bonne_reponse="Oui, bien sûr!"
+   reponse=demander_choix( "Souhaitez-vous accepter cette invitation et partir pour Poudlard ?",[bonne_reponse,"Non, je préfère rester avec l’oncle Vernon... "])
+   if reponse!=bonne_reponse:
        print("Vous déchirez la lettre, l’oncle Vernon pousse un cri de joie:"
              "« EXCELLENT ! Enfin quelqu’un de NORMAL dans cette maison ! » "
              "Le monde magique ne saura jamais que vous existiez...")
@@ -96,6 +97,14 @@ def acheter_fournitures(personnage):
     prix_animaux = {"Chouette": 20,"Chat": 15,"Rat": 10,"Crapaud": 5}
     print("\nVous avez", personnage["Argent"], "galions.")
     animal = demander_choix("Choisissez votre animal de compagnie :", list(prix_animaux.keys()))
+    print("Voici les animaux disponibles :")
+    animal_index = 1
+    for animal in prix_animaux.items():
+        print(animal_index,".",animal[0],"-",animal[1],"galions")
+        animal_index+=1
+    animal_index = demander_nombre("Quel Animal voulez-vous ?",1,4)-1
+    animal = list(prix_animaux.keys())[animal_index]
+
 
     if personnage["Argent"] < prix_animaux[animal]:
         print("Vous n'avez pas assez d'argent. Partie perdue.")
@@ -110,10 +119,14 @@ def acheter_fournitures(personnage):
 
     def lancer_chapitre_1():
         introduction()
-        personnage = cree_personnage()
+        personnage = creer_personnage()
         recevoir_lettre()
         renconter_hagrid(personnage)
         acheter_fournitures(personnage)
         print("Fin du Chapitre 1 ! Votre aventure commence à Poudlard...")
         afficher_personnage(personnage)
+        return personnage
+
+
+
 
