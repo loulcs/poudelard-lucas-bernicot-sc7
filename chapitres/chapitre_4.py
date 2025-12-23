@@ -1,8 +1,12 @@
+import json
 from utils.input_utils import demander_nombre
 from utils.input_utils import demander_choix
 
 
+
 def creer_equipe(maison,equipe_data,est_joueur=False,joueur=None):
+    with open('equipe_quidditch.json','r')as f:
+        equipe_data = json.load(f)
     equipe = {"nom": maison,'score': 0,'a_marque': 0,'a_stoppe': 0, 'attrape_vifdor': False,'joueurs': equipe_data['joueurs']}
     if est_joueur==True and joueur==None:
         nouveau_joueurs=[]
@@ -44,6 +48,21 @@ def attraper_vifdor(e1,e2):
         e2['attrape_vifdor'] = True
         e2['score']+=150
     return equipe_gagnante
+
+def afficher_score(e1,e2):
+    maison =attraper_vifdor(e1,e2)
+    proba_but =demander_nombre("choississeez un nombre:",1,6)
+    while maison!=True:
+        if proba_but>=6:
+
+
+        maison=tentative_marque(e1,e2,joueur_est_joueur=True)
+        print("Score actuel:",'/n','-',e1['nom'],':',e1['score'],'/n','-',e2['nom'],':',e2['score'])
+
+
+
+
+
 
 
 
