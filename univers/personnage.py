@@ -21,10 +21,10 @@ def afficher_personnage(joueur):
     print("Profil du personnage:")
     for i in joueur:
         print(i,end=':')
-        if isinstance(joueur[i], list):
+        if type(elem)==list:
             for j in joueur[i]:
                 print(','.join(joueur[i]))
-        elif isinstance(joueur[i], dict):
+        elif type(elem)==dict:
             print("")
             for elem in joueur[i]:
                 print('-',elem,":",joueur[i][elem])
