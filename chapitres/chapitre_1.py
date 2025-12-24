@@ -22,7 +22,7 @@ def creer_personnage():
        message="Choisissez votre niveau de"+ elem +"(1-10):"
        nombre = demander_nombre(message, 1, 10)
        joueur["Attributs"][elem] = nombre
-    afficher_personnage(joueur)
+       afficher_personnage(joueur)
    return joueur
 
 def recevoir_lettre():
