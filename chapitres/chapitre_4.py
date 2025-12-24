@@ -50,14 +50,7 @@ def attraper_vifdor(e1,e2):
     return equipe_gagnante
 
 def afficher_score(e1,e2):
-    maison =attraper_vifdor(e1,e2)
-    proba_but =demander_nombre("choississeez un nombre:",1,6)
-    while maison!=True:
-        if proba_but>=6:
 
-
-        maison=tentative_marque(e1,e2,joueur_est_joueur=True)
-        print("Score actuel:",'/n','-',e1['nom'],':',e1['score'],'/n','-',e2['nom'],':',e2['score'])
 
 
 
