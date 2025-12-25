@@ -1,4 +1,6 @@
 import json
+
+from main import equipe_attaque
 from utils.input_utils import demander_nombre
 from utils.input_utils import demander_choix
 
@@ -49,7 +51,21 @@ def attraper_vifdor(e1,e2):
         e2['score']+=150
     return equipe_gagnante
 
-def afficher_score(e1,e2):
+
+
+def afficher_equipe(maison,equipe):
+    print("Equipe de",maison,":")
+    equipe_joueur = '\n''- '.join(equipe['joueurs'])
+    return (equipe_joueur)
+
+
+
+
+
+
+
+
+
 
 
 
