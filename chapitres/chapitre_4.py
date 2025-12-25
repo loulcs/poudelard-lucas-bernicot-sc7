@@ -52,6 +52,7 @@ def attraper_vifdor(e1,e2):
     return equipe_gagnante
 
 
+
 def afficher_equipe(maison,equipe):
     print("Equipe de",maison,":")
     equipe_joueur = '\n''- '.join(equipe['joueurs'])
