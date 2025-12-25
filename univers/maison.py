@@ -8,7 +8,7 @@ def actualiser_points_maison(maisons, nom_maison, points):
         print("Plus ", end='')
     else:
         print("Moins ", end='')
-     maisons[nom_maison]+= points
+    maisons[nom_maison]+= points
     print(abs(points),"points pour",nom_maison,"!")
     print(' Nouveau total: ', maisons[nom_maison])
     return
