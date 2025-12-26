@@ -73,14 +73,6 @@ def match_quidditch(joueur,maisons):
         print("l'Attrapeur doit attraper le Vifdor pour gagner la partie")
         i=0
         while i< 20:
-            tentative_marque(equipe_attaque,equipe_defense)
-            if equipe_attaque = equipe_joueur
-
-            afficher_score(equipe_joueur,equipe_adverse)
-            apparition_vifdor()
-            if equipe_joueur ==attraper_vifdor(equipe_joueur,equipe_adverse):
-                break
-            else:
 
 
 
