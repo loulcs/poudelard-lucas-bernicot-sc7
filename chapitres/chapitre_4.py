@@ -1,6 +1,4 @@
 import json
-
-from main import equipe_attaque
 from utils.input_utils import demander_nombre
 from utils.input_utils import demander_choix
 
@@ -55,8 +53,6 @@ def afficher_score(e1,e2):
     point_actuels=e2['score']
     print(e1['nom'],":",point_actuel,"points",'\n',e2['nom'],":",point_actuels,"points")
 
-
-
 def afficher_equipe(maison,equipe):
     print("Equipe de",maison,":")
     equipe_joueur = '\n''- '.join(equipe['joueurs'])
@@ -70,8 +66,7 @@ def match_quidditch(joueur,maisons):
         equipe_joueur = creer_equipe(maison_joueur,equipe_data,est_joueur=False,joueur=None)
         equipe_adverse = creer_equipe(maison_adverse,equipe_data,est_joueur=False,joueur=None)
         afficher_equipe(equipe_joueur,equipe_adverse)
-        print("l'Attrapeur doit attraper le Vifdor pour gagner la partie")
-        i=0
+
 
 
 
