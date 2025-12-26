@@ -7,8 +7,6 @@ from utils.input_utils import demander_choix
 
 
 def creer_equipe(maison,equipe_data,est_joueur=False,joueur=None):
-    with open('equipe_quidditch.json','r')as f:
-        equipe_data = json.load(f)
     equipe = {"nom": maison,'score': 0,'a_marque': 0,'a_stoppe': 0, 'attrape_vifdor': False,'joueurs': equipe_data['joueurs']}
     if est_joueur==True and joueur==None:
         nouveau_joueurs=[]
@@ -51,12 +49,40 @@ def attraper_vifdor(e1,e2):
         e2['score']+=150
     return equipe_gagnante
 
+def afficher_score(e1,e2):
+    print("Score actuel:")
+    point_actuel=e1['score']
+    point_actuels=e2['score']
+    print(e1['nom'],":",point_actuel,"points",'\n',e2['nom'],":",point_actuels,"points")
+
 
 
 def afficher_equipe(maison,equipe):
     print("Equipe de",maison,":")
     equipe_joueur = '\n''- '.join(equipe['joueurs'])
     return (equipe_joueur)
+
+
+def match_quidditch(joueur,maisons):
+    with open ('equipe_quidditch.json','r')as f:
+        equipe=json.load(f)
+        maison_adverse = demander_choix("Choisissez une maison",['Gryfondor','Serpentard','Serdaigle','Pouffsouffle'])
+        equipe_joueur = creer_equipe(maison_joueur,equipe_data,est_joueur=False,joueur=None)
+        equipe_adverse = creer_equipe(maison_adverse,equipe_data,est_joueur=False,joueur=None)
+        afficher_equipe(equipe_joueur,equipe_adverse)
+        print("l'Attrapeur doit attraper le Vifdor pour gagner la partie")
+        i=0
+        while i< 20:
+            tentative_marque(equipe_attaque,equipe_defense)
+            if equipe_attaque = equipe_joueur
+
+            afficher_score(equipe_joueur,equipe_adverse)
+            apparition_vifdor()
+            if equipe_joueur ==attraper_vifdor(equipe_joueur,equipe_adverse):
+                break
+            else:
+
+
 
 
 
