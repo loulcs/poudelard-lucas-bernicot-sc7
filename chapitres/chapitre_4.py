@@ -72,7 +72,7 @@ def match_quidditch(joueur,maisons):
         afficher_equipe(equipe_joueur,equipe_adverse)
         print("l'Attrapeur doit attraper le Vifdor pour gagner la partie")
         i=0
-        while i< 20:
+
 
 
 
