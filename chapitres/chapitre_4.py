@@ -65,7 +65,7 @@ def match_quidditch(joueur,maisons):
         maison_adverse = demander_choix("Choisissez une maison",['Gryfondor','Serpentard','Serdaigle','Pouffsouffle'])
         equipe_joueur = creer_equipe(maison_joueur,equipe_data,est_joueur=False,joueur=None)
         equipe_adverse = creer_equipe(maison_adverse,equipe_data,est_joueur=False,joueur=None)
-        afficher_equipe(equipe_joueur,equipe_adverse)
+
 
 
 
