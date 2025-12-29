@@ -101,7 +101,7 @@ def lancer_chapitre_2(joueur):
     mot_de_bienvenue()
     ceremonie_repartition(joueur)
     installation_salle_commune(joueur)
-    input("Appuyez sur Entrée pour continuer..."))
+    input("Appuyez sur Entrée pour continuer...")
     print("Résumé de votre personnage à la fin du chapitre 2 :")
     afficher_personnage(joueur)
     print("Fin du Chapitre 2 ! Les cours à Poudlard vont bientôt commencer...")
