@@ -1,6 +1,7 @@
 import json
 from utils.input_utils import demander_nombre
 from utils.input_utils import demander_choix
+from univers.maison import actualiser_points_maison
 
 
 
@@ -60,12 +61,14 @@ def afficher_equipe(maison,equipe):
 
 
 def match_quidditch(joueur,maisons):
-    with open ('data/equipe_quidditch.json','r')as f:
+    with (open ("data/equipe_quidditch.json",'r')as f):
         equipe=json.load(f)
         maison_joueurs=joueur["Maison"]
         maison_adverse = demander_choix("Choisissez une maison",['Gryfondor','Serpentard','Serdaigle','Pouffsouffle'])
-        equipe_joueur = creer_equipe(maison_joueurs,equipe['joueur'],False,None)
-        equipe_adverse = creer_equipe(maison_adverse,equipe['joueur'],False,None)
+        equipe_joueur =equipe
+        equipe_adverse=equipe
+        creer_equipe(maison_joueurs,equipe_joueur['joueurs'],False,None)
+        creer_equipe(maison_adverse,equipe_adverse['joueurs'],False,None)
         print(afficher_equipe(equipe_joueur,equipe_adverse))
         Tour=0
         while Tour<20:
@@ -78,6 +81,17 @@ def match_quidditch(joueur,maisons):
             input("apuyer sur entrer pour continuer")
             Tour+=1
         afficher_score(equipe_joueur,maison_joueurs)
+        if equipe_joueur['score']>equipe_adverse['score']:
+            maison_gagnante=maison_joueurs
+            points=equipe_joueur['score']+500
+        elif equipe_adverse['score']>equipe_joueur['score']:
+            maison_gagnante=maison_adverse
+            points=equipe_adverse['score']+500
+        else:
+            print("math nul!")
+        actualiser_points_maison(maison_gagnante,points)
+        print("La maison gagante est",maison_gagnante,"avec",points,"!")
+
 
 
 
