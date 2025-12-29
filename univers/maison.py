@@ -24,7 +24,7 @@ def afficher_maison_gagnante(maisons):
             gagnant.append(nom)
     if len(gagnant)>1:
         for g in gagnant:
-            print(g,end=" ")
+            print("La maison en tête est{}".format(g))
 import random
 def repartition_maison(joueur,questions):
     dico_score={"Gryffondor":0, "Serpentard":0, "Poufsouffle":0, "Serdaigle":0}

@@ -1,6 +1,7 @@
 from utils.input_utils import demander_choix
 from univers.maison import repartition_maison
 from univers.personnage import afficher_personnage
+import json
 
 def rencontrer_amis(joueur):
     print("Vous montez à bord du Poudlard Express. Le train démarre lentement en direction du Nord...")
@@ -77,13 +78,11 @@ def ceremonie_repartition(joueur):
     print(f"Le Choixpeau s’exclame : {maison} !!!")
     print(f"Tu rejoins les élèves de {maison} sous les acclamations !")
 
-import json
+
 
 def installation_salle_commune(joueur):
     with open("data/maisons.json", "r", encoding="utf-8") as f:
         maisons = json.load(f)
-
-    maison = joueur["Maison"]
     maison_joueur =joueur["Maison"]
     info_maison = maisons[maison_joueur]
     description = info_maison["description"]
@@ -92,17 +91,19 @@ def installation_salle_commune(joueur):
     emoji = info_maison["emoji"]
 
     print("Vous suivez les préfets à travers les couloirs du château...")
-    print(f"{emoji} {description}")
+    print(emoji,description)
     print(message_installation)
-    print(f"Les couleurs de votre maison : {', '.join(couleurs)}")
+    print("Les couleurs de votre maison : {}".format(", ".join(couleurs)))
 
-def lancer_chapitre_2(personnage):
-    rencontrer_amis(personnage)
+
+def lancer_chapitre_2(joueur):
+    rencontrer_amis(joueur)
     mot_de_bienvenue()
-    ceremonie_repartition(personnage)
-    installation_salle_commune(personnage)
+    ceremonie_repartition(joueur)
+    installation_salle_commune(joueur)
+    input("Appuyez sur Entrée pour continuer..."))
     print("Résumé de votre personnage à la fin du chapitre 2 :")
-    afficher_personnage(personnage)
+    afficher_personnage(joueur)
     print("Fin du Chapitre 2 ! Les cours à Poudlard vont bientôt commencer...")
 
 

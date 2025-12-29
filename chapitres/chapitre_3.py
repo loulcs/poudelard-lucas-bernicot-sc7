@@ -1,11 +1,10 @@
 import json
 import random
-
 from univers.maison import actualiser_points_maison
-
+from univers.maison import afficher_maison_gagnante
+from univers.personnage import afficher_personnage
 
 def apprendre_sorts(joueur, chemin_fichier="data/sorts.json"):
-    # Chargement des sorts depuis le fichier JSON
     with open(chemin_fichier, "r", encoding="utf-8") as f:
         tous_sorts = json.load(f)
     categories = {"Offensif": [], "Défensif": [], "Utilitaire": []}
@@ -28,13 +27,14 @@ def apprendre_sorts(joueur, chemin_fichier="data/sorts.json"):
     joueur["Sortilèges"] = []
     for sort in sort_selectionnes:
         joueur["Sortilèges"].append(sort["nom"])
-        print(f"Tu viens d'apprendre le sort : {sort['nom']} ({sort['type']})")
+        print("Tu viens d'apprendre le sort : {} ({})".format(sort["nom"], sort["type"]))
         input("Appuie sur Entrée pour continuer...")
 
     print("Tu as terminé ton apprentissage de base à Poudlard !")
     print("Voici les sortilèges que tu maîtrises désormais :")
     for sort in sort_selectionnes:
-        print(f"- {sort['nom']} ({sort['type']}) : {sort['description']}")
+        print("- {} ({}) : {}".format(sort["nom"], sort["type"], sort["description"]))
+
 
     return joueur
 
@@ -55,24 +55,23 @@ def quiz_magie(joueur, chemin_fichier="data/quiz_magie.json"):
     score_quiz = 0
     for i in range(4):
         q = questions_choisies[i]
-        print(f"{i + 1}. {q['question']}")
+        print(str(i + 1) + ". " + q["question"])
         reponse = input("> ").strip()
         if reponse.lower() == q["reponse"].lower():
-            print("Bonne réponse ! +25 points pour ta maison.\n")
+            print("Bonne réponse ! +25 points pour ta maison.")
             score_quiz += 25
         else:
-            print(f"Mauvaise réponse. La bonne réponse était : {q['reponse']}\n")
+            print("Mauvaise réponse. La bonne réponse était :"+ str(q['reponse']))
 
-    print(f"Score obtenu : {score_quiz} points")
+    print("Score obtenu : {} points".format(score_quiz))
+    actualiser_points_maison(joueur["Maison"], score_quiz)
+    print("La maison {} gagne {} points !".format(joueur["Maison"], score_quiz))
 
-from univers.maison import actualiser_points_maison
-from univers.maison import afficher_maison_gagnante
-from univers.personnage import afficher_personnage
 
-def lancer_chapitre_3(joueur, maison):
-    apprendre_sorts(maison)
-    quiz_magie(maison)
-    actualiser_points_maison(maison)
-    afficher_maison_gagnante(maison)
+def lancer_chapitre_3(joueur, maisons):
+    apprendre_sorts(joueur)
+    quiz_magie(joueur)
+    afficher_maison_gagnante(maisons)
     afficher_personnage(joueur)
+    print("Fin du Chapitre 3 ! Les cours continuent à Poudlard...")
 
