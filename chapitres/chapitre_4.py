@@ -1,6 +1,7 @@
 import json
 from symbol import continue_stmt
 
+from univers.maison import actualiser_points_maison
 from utils.input_utils import demander_nombre
 from utils.input_utils import demander_choix
 
@@ -8,7 +9,7 @@ from utils.input_utils import demander_choix
 
 def creer_equipe(maison,equipe_data,est_joueur=False,joueur=None):
     equipe = {"nom": maison,'score': 0,'a_marque': 0,'a_stoppe': 0, 'attrape_vifdor': False,'joueurs': equipe_data}
-    if est_joueur==True and joueur==None:
+    if est_joueur==True and joueur is not None:
         nouveau_joueurs=[joueur]
         for elem in equipe_data:
             if elem!=joueur:
@@ -66,7 +67,7 @@ def afficher_equipe(maison,equipe):
 def match_quidditch(joueur,maisons):
     with open ('data/equipes_quidditch.json','r',encoding="utf-8")as f:
         equipe=json.load(f)
-        maison_joueur=joueur[maisons]
+        maison_joueur=joueur['Maison']
         maison_adverse = demander_choix("Choisissez une maison",['Gryfondor','Serpentard','Serdaigle','Pouffsouffle'])
         print("Match de Quidditch:", maison_joueur, "vs", maison_adverse, "!")
         equipe_joueur= (creer_equipe(maison_joueur,equipe['joueurs'],est_joueur=False,joueur=None))
@@ -77,27 +78,21 @@ def match_quidditch(joueur,maisons):
         print()
         print(afficher_equipe(maison_adverse,equipe_adverse))
         print("tu joue pour",equipe_joueur,"en tant qu'Attrapeur")
-        i=0
-        if i <20:
+        Tour=0
+        while Tour<20:
             tentative_marque(equipe_joueur,equipe_adverse,False)
+            tentative_marque(equipe_adverse,equipe_joueur,True)
             print(afficher_score(equipe_joueur,equipe_adverse))
             if apparition_vifdor():
-                if attraper_vifdor(equipe_joueur,equipe_adverse)==maison_joueur:
-                    equipe_joueur['score']+=150
-            print("Le match est terminé")
+                attraper_vifdor(equipe_joueur,equipe_adverse)
+                break
+        input("Appuyez sur Entrée pour continuer")
+        Tour+=1
 
-        input("appuyer sur entrer pour continuer")
-        i=i+1
-        if i ==20:
-            print(afficher_score(equipe_joueur,equipe_adverse))
-            if equipe_joueur['score']>equipe_adverse['score']:
-                print("La maison gagante est ",maison_joueur)
-                print("Le match est remporté par",maison_joueur,"plus 500 points")
-            elif equipe_adverse['score']>equipe_adverse['score']:
-                print("La maison gagante est ",maison_adverse)
-                print("Le match est remporté par",maison_adverse,"plus 500 points")
-            else:
-                print("Le match est nulle les deux equipes ont très bien joue")
+        afficher_score(equipe_joueur,equipe_adverse)
+
+
+
 
 
 
