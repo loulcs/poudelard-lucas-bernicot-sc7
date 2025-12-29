@@ -60,12 +60,25 @@ def afficher_equipe(maison,equipe):
 
 
 def match_quidditch(joueur,maisons):
-    with open ('equipe_quidditch.json','r')as f:
+    with open ('data/equipe_quidditch.json','r')as f:
         equipe=json.load(f)
+        maison_joueurs=joueur["Maison"]
         maison_adverse = demander_choix("Choisissez une maison",['Gryfondor','Serpentard','Serdaigle','Pouffsouffle'])
-        equipe_joueur = creer_equipe(maison_joueur,equipe_data,est_joueur=False,joueur=None)
-        equipe_adverse = creer_equipe(maison_adverse,equipe_data,est_joueur=False,joueur=None)
-        afficher_equipe(equipe_joueur,equipe_adverse)
+        equipe_joueur = creer_equipe(maison_joueurs,equipe['joueur'],False,None)
+        equipe_adverse = creer_equipe(maison_adverse,equipe['joueur'],False,None)
+        print(afficher_equipe(equipe_joueur,equipe_adverse))
+        Tour=0
+        while Tour<20:
+            afficher_score(equipe_joueur,maison_joueurs)
+            tentative_marque(equipe_adverse,maison_joueurs,True)
+            tentative_marque(equipe_joueur,maison_joueurs,False)
+            if apparition_vifdor()==True:
+                print("Le match est terminé")
+                break
+            input("apuyer sur entrer pour continuer")
+            Tour+=1
+        afficher_score(equipe_joueur,maison_joueurs)
+
 
 
 
