@@ -1,4 +1,6 @@
 import json
+
+from univers import maison
 from utils.input_utils import demander_nombre
 from utils.input_utils import demander_choix
 from univers.maison import actualiser_points_maison
@@ -56,31 +58,37 @@ def afficher_score(e1,e2):
 
 def afficher_equipe(maison,equipe):
     print("Equipe de",maison,":")
-    equipe_joueur = '\n''- '.join(equipe['joueurs'])
-    return (equipe_joueur)
+    equipe_joueurs = ("-"+"\n-".join(equipe['joueurs']))
+    return (equipe_joueurs)
 
 
 def match_quidditch(joueur,maisons):
-    with (open ("data/equipe_quidditch.json",'r')as f):
+    with (open ("data/equipes_quidditch.json",'r')as f):
         equipe=json.load(f)
+        maison_aleatoire=['Gryffondor','Serpentard','Serdaigle','Poufsouffle']
         maison_joueurs=joueur["Maison"]
-        maison_adverse = demander_choix("Choisissez une maison",['Gryfondor','Serpentard','Serdaigle','Pouffsouffle'])
-        equipe_joueur =equipe
-        equipe_adverse=equipe
-        creer_equipe(maison_joueurs,equipe_joueur['joueurs'],False,None)
-        creer_equipe(maison_adverse,equipe_adverse['joueurs'],False,None)
-        print(afficher_equipe(equipe_joueur,equipe_adverse))
-        Tour=0
+        for i in range(len(maison_aleatoire)):
+            if maison_aleatoire[i]== maison_joueurs:
+                del maison_aleatoire[i]
+                break
+        maison_adverse = random.choice(maison_aleatoire)
+        equipe_joueur= creer_equipe(maison_joueurs,equipe[maison_joueurs],False,None)
+        equipe_adverse=creer_equipe(maison_adverse,equipe[maison_adverse],False,None)
+        print(afficher_equipe(maison_joueurs,equipe_joueur))
+        print()
+        print(afficher_equipe(maison_adverse,equipe_adverse))
+        Tour=1
         while Tour<20:
-            afficher_score(equipe_joueur,maison_joueurs)
-            tentative_marque(equipe_adverse,maison_joueurs,True)
-            tentative_marque(equipe_joueur,maison_joueurs,False)
+            print("Tour",Tour)
+            afficher_score(equipe_joueur,equipe_adverse)
+            tentative_marque(equipe_joueur,equipe_adverse,True)
+            apparition_vifdor()
             if apparition_vifdor()==True:
-                print("Le match est terminé")
+                print("Le match est terminé,le Vifdor a ete attraper")
                 break
             input("apuyer sur entrer pour continuer")
             Tour+=1
-        afficher_score(equipe_joueur,maison_joueurs)
+        afficher_score(equipe_joueur,equipe_adverse)
         if equipe_joueur['score']>equipe_adverse['score']:
             maison_gagnante=maison_joueurs
             points=equipe_joueur['score']+500
@@ -89,7 +97,7 @@ def match_quidditch(joueur,maisons):
             points=equipe_adverse['score']+500
         else:
             print("math nul!")
-        actualiser_points_maison(maison_gagnante,points)
+        actualiser_points_maison(maisons,maison_gagnante,points)
         print("La maison gagante est",maison_gagnante,"avec",points,"!")
 
 
