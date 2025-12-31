@@ -3,8 +3,8 @@ import json
 from univers import maison
 from utils.input_utils import demander_nombre
 from utils.input_utils import demander_choix
-from univers.maison import actualiser_points_maison
-
+from univers.maison import actualiser_points_maison, afficher_maison_gagnante
+from univers.personnage import afficher_personnage
 
 
 def creer_equipe(maison,equipe_data,est_joueur=False,joueur=None):
@@ -99,6 +99,13 @@ def match_quidditch(joueur,maisons):
             print("math nul!")
         actualiser_points_maison(maisons,maison_gagnante,points)
         print("La maison gagante est",maison_gagnante,"avec",points,"!")
+
+def lancer_chapitre_4_quidditch(joueur,maisons):
+        print("Epreuve Quidditch")
+        match_quidditch(joueur,maisons)
+        print("Fin du Chapitre 4 tres belle performance sur le terrain")
+        afficher_maison_gagnante(maisons)
+        afficher_personnage(joueur)
 
 
 
