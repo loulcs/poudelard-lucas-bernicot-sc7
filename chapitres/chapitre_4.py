@@ -96,7 +96,7 @@ def match_quidditch(joueur,maisons):
             print("Tour",Tour)
             afficher_score(equipe_joueur,equipe_adverse)
             tentative_marque(equipe_joueur,equipe_adverse,True)
-            apparition_vifdor()
+            print(apparition_vifdor())
             if apparition_vifdor()==True:
                 print("Le match est terminé,le Vifdor a ete attraper")
                 break
