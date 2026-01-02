@@ -8,15 +8,6 @@ from univers.personnage import afficher_personnage
 
 
 def creer_equipe(maison,equipe_data,est_joueur=False,joueur=None):
-    equipe = {"nom": maison,'score': 0,'a_marque': 0,'a_stoppe': 0, 'attrape_vifdor': False,'joueurs': equipe_data['joueurs']}
-    if est_joueur==True and joueur==None:
-        nouveau_joueurs=[]
-        for elem in equipe_data['joueurs']:
-            nouveau_joueurs.append(elem)
-        equipe['joueurs'] = nouveau_joueurs
-    return equipe
-
-def creer_equipe(maison,equipe_data,est_joueur=False,joueur=None):
     equipe = {"nom": maison,'score': 0,'a_marque': 0,'a_stoppe': 0, 'attrape_vifdor': False,'joueurs': []}
     nouveau_joueurs=[]
     equipe_joueur = equipe_data[maison]['joueurs']
