@@ -1,5 +1,5 @@
 import json
-
+import random
 from univers import maison
 from utils.input_utils import demander_nombre
 from utils.input_utils import demander_choix
@@ -16,7 +16,21 @@ def creer_equipe(maison,equipe_data,est_joueur=False,joueur=None):
         equipe['joueurs'] = nouveau_joueurs
     return equipe
 
-import random
+def creer_equipe(maison,equipe_data,est_joueur=False,joueur=None):
+    equipe = {"nom": maison,'score': 0,'a_marque': 0,'a_stoppe': 0, 'attrape_vifdor': False,'joueurs': []}
+    nouveau_joueurs=[]
+    equipe_joueur = equipe_data[maison]['joueurs']
+    if est_joueur==True and joueur is not None:
+        nouveau_joueurs.append("{} {} (Attrapeur) ".format(joueur['Prenom'],joueur['Nom']))
+        for elem in equipe_joueur[1:]:
+            nouveau_joueurs.append(elem)
+    else:
+        for elem in equipe_joueur:
+            nouveau_joueurs.append(elem)
+    equipe['joueurs'] = nouveau_joueurs
+    return equipe
+
+
 def tentative_marque(equipe_attaque,equipe_defense,joueur_est_joueur=False):
     proba_but=demander_nombre("Choississez un nombre:",1,10)
     if proba_but>=6:
