@@ -75,3 +75,4 @@ def lancer_chapitre_3(joueur, maisons):
     input("Appuyez sur ENTREE pour continuer...")
 
 
+

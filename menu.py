@@ -25,3 +25,4 @@ def lancer_choix_menu():
         else:
              print("Vous avez quitte le jeu")
              break
+
