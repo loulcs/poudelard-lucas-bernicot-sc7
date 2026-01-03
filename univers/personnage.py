@@ -20,16 +20,16 @@ def ajouter_objet(joueur, cle, objet):
 def afficher_personnage(joueur):
     print("Profil du personnage:")
     for i in joueur:
+        elem = joueur[i]
         print(i,end=':')
         if type(elem)==list:
-            for j in joueur[i]:
                 print(','.join(joueur[i]))
         elif type(elem)==dict:
             print("")
-            for elem in joueur[i]:
-                print('-',elem,":",joueur[i][elem])
+            for souselem in elem :
+                print('-',souselem,":",elem[souselem])
         else:
-            print(i,":",joueur[i])
+            print(elem)
 
 
 

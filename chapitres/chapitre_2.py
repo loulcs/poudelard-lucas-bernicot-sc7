@@ -40,6 +40,7 @@ def rencontrer_amis(joueur):
     print("Le train continue sa route. Le château de Poudlard se profile à l’horizon...")
     print("Tes choix semblent déjà en dire long sur ta personnalité !")
     print("Tes attributs mis à jour :", joueur["Attributs"])
+    input("Appuyez sur ENTER pour continuer...")
 
 def mot_de_bienvenue():
     print("Le professeur Dumbledore se lève et s’adresse à toute l’assemblée :\n")

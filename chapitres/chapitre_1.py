@@ -13,21 +13,21 @@ def introduction():
     print("Votre aventure commence maintenant !")
 
 def creer_personnage():
-   prenom = input("Entrez le prenom de votre personnage : ")
+   prenom = input("Entrez le prénom de votre personnage : ")
    nom = input("Entrez le nom de votre personnage : ")
    attribut={"courage":0,"intelligence":0,"loyauté":0,"ambition":0}
    joueur=initialiser_personnage(nom, prenom, attribut)
    print("Choisissez vos attributs:")
    for elem in attribut:
-       message="Choisissez votre niveau de"+ elem +"(1-10):"
+       message="Choisissez votre niveau de "+ elem +"(1-10):"
        nombre = demander_nombre(message, 1, 10)
        joueur["Attributs"][elem] = nombre
-       afficher_personnage(joueur)
+   afficher_personnage(joueur)
    return joueur
 
 def recevoir_lettre():
    print("Une chouette traverse la fenêtre et vous apporte une lettre scellée du sceau de Poudlard... ")
-   input()
+   input("Appuyez sur ENTREE pour ouvrir la lettre")
    print(""" Cher élève,
          Nous avons le plaisir de vous informer que vous avez été admis à l'école de sorcellerie de Poudlard ! """)
    bonne_reponse="Oui, bien sûr!"
@@ -37,12 +37,17 @@ def recevoir_lettre():
              "« EXCELLENT ! Enfin quelqu’un de NORMAL dans cette maison ! » "
              "Le monde magique ne saura jamais que vous existiez...")
        exit()
+   else:
+       input("Appuyer sur ENTREE pour continuer...")
 
 def renconter_hagrid(personnage):
-   print('Hagrid : Salut Harry ! Je suis venu t’aider à faire tes achats sur le Chemin de Traverse.' )
+   print('Hagrid : Salut {} ! Je suis venu t’aider à faire tes achats sur le Chemin de Traverse.'.format(personnage["Prenom"]) )
    reponse=demander_choix("Voulez-vous suivre Hagrid ?",["Oui","Non"] )
    if reponse=="Non":
        print("Hagrid insiste gentiment et vous entraîne quand même avec lui!")
+   else:
+       print("C'est parti")
+   input("Appuyer sur ENTREE pour continuer...")
 
 import json
 
@@ -93,26 +98,27 @@ def acheter_fournitures(personnage):
         print("Vous avez oublié des objets obligatoires :", objets_obligatoires)
         print("Partie perdue.")
         exit()
+    prix_animaux = {
+        "Chouette": 20,
+        "Chat": 15,
+        "Rat": 10,
+        "Crapaud": 5
+    }
 
-    prix_animaux = {"Chouette": 20,"Chat": 15,"Rat": 10,"Crapaud": 5}
-    print("\nVous avez", personnage["Argent"], "galions.")
-    animal = demander_choix("Choisissez votre animal de compagnie :", list(prix_animaux.keys()))
+    print("Vous avez", personnage["Argent"], "galions.")
     print("Voici les animaux disponibles :")
-    animal_index = 1
-    for animal in prix_animaux.items():
-        print(animal_index,".",animal[0],"-",animal[1],"galions")
-        animal_index+=1
-    animal_index = demander_nombre("Quel Animal voulez-vous ?",1,4)-1
-    animal = list(prix_animaux.keys())[animal_index]
 
+    for animal in prix_animaux:
+        print("-", animal, "-", prix_animaux[animal], "galions")
 
-    if personnage["Argent"] < prix_animaux[animal]:
+    animal = demander_choix("Choisissez votre animal de compagnie :",list(prix_animaux.keys()))
+    prix = prix_animaux[animal]
+    if personnage["Argent"] < prix:
         print("Vous n'avez pas assez d'argent. Partie perdue.")
         exit()
-
-    modifier_argent(personnage, -prix_animaux[animal])
+    modifier_argent(personnage, -prix)
     ajouter_objet(personnage, "Inventaire", animal)
-    print("Vous avez choisi :", animal)
+    print("Vous avez choisi :", animal, "(-", prix, "galions)")
 
     print("Tous les objets obligatoires ont été achetés avec succès !")
     afficher_personnage(personnage)
@@ -125,6 +131,7 @@ def lancer_chapitre_1():
     acheter_fournitures(personnage)
     print("Fin du Chapitre 1 ! Votre aventure commence à Poudlard...")
     afficher_personnage(personnage)
+    input("Appuyez sur ENTER pour continuer...")
     return personnage
 
 

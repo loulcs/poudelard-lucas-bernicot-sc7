@@ -4,7 +4,7 @@ from univers.maison import actualiser_points_maison
 from univers.maison import afficher_maison_gagnante
 from univers.personnage import afficher_personnage
 
-def apprendre_sorts(joueur, chemin_fichier="data/sorts.json"):
+def apprendre_sorts(joueur, chemin_fichier="data/sort.json"):
     with open(chemin_fichier, "r", encoding="utf-8") as f:
         tous_sorts = json.load(f)
     categories = {"Offensif": [], "Défensif": [], "Utilitaire": []}
@@ -35,11 +35,10 @@ def apprendre_sorts(joueur, chemin_fichier="data/sorts.json"):
     for sort in sort_selectionnes:
         print("- {} ({}) : {}".format(sort["nom"], sort["type"], sort["description"]))
 
-
     return joueur
 
 
-def quiz_magie(joueur, chemin_fichier="data/quiz_magie.json"):
+def quiz_magie(joueur, chemin_fichier="data/quiz.magie.json"):
     with open(chemin_fichier, "r", encoding="utf-8") as f:
         questions = json.load(f)
 
@@ -64,14 +63,16 @@ def quiz_magie(joueur, chemin_fichier="data/quiz_magie.json"):
             print("Mauvaise réponse. La bonne réponse était :"+ str(q['reponse']))
 
     print("Score obtenu : {} points".format(score_quiz))
-    actualiser_points_maison(joueur["Maison"], score_quiz)
     print("La maison {} gagne {} points !".format(joueur["Maison"], score_quiz))
+    return score_quiz
 
 
 def lancer_chapitre_3(joueur, maisons):
-    apprendre_sorts(joueur)
-    quiz_magie(joueur)
+    apprendre_sorts(joueur,"data/sort.json")
+    resultat=quiz_magie(joueur, "data/quiz.magie.json")
+    actualiser_points_maison(maisons, joueur["Maison"], resultat)
     afficher_maison_gagnante(maisons)
     afficher_personnage(joueur)
     print("Fin du Chapitre 3 ! Les cours continuent à Poudlard...")
+    input("Appuyez sur ENTREE pour continuer...")
 

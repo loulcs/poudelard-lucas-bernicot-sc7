@@ -23,7 +23,7 @@ def demander_nombre(message, min_val=None, max_val=None):
                 est_chiffre=True
                 for c in val_input[debut:]:
                     if c<"0" or c>"9":
-                        print("Erreur : saisie non valide")
+                        print("Erreur : saisie non valide, entrer un nombre")
                         est_chiffre=False
                         break
                 if not est_chiffre:
@@ -48,7 +48,7 @@ def load_fichier(chemin_fichier):
 def demander_choix(message, options):
     print(message)
     for i in range(len(options)):
-        print(i +1 , ". " + options[i]['nom'])
+        print(i +1 , ". " + options[i])
     choix = demander_nombre("Votre choix : ", 1, len(options))
     return options[choix - 1]
 
