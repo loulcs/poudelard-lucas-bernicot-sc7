@@ -29,9 +29,12 @@ def tentative_marque(equipe_attaque,equipe_defense,joueur_est_joueur=False):
 
         else:
             buteur=random.choice(equipe_attaque['joueurs'])
+        print(buteur, "de l'équipe", equipe_attaque['nom'], "tire...")
         print(buteur,"marque un but pour ",equipe_attaque['nom'],'!(+10points)')
     else:
         equipe_defense['a_stoppe']+=1
+        buteur = random.choice(equipe_attaque['joueurs'])
+        print(buteur, "de l'équipe",equipe_attaque['nom'],"tire...")
         print(equipe_defense['nom'],"bloque l'attaque !")
 
 def apparition_vifdor():
@@ -45,7 +48,6 @@ def attraper_vifdor(e1, e2):
     equipe_gagnante = random.choice([e1, e2])
     equipe_gagnante['attrape_vifdor'] = True
     equipe_gagnante['score'] += 150
-    print("Le Vif d'Or a été attrapé par {} ! (+150 points)".format(equipe_gagnante['nom']))
     return equipe_gagnante
 
 def afficher_score(e1, e2):
@@ -94,6 +96,7 @@ def match_quidditch(joueur,maisons):
             break
         input("Appuyez sur Entrée pour continuer...")
         Tour += 1
+        print()
 
     afficher_score(equipe_joueur, equipe_adverse)
 

@@ -102,7 +102,7 @@ def lancer_chapitre_2(joueur):
     print("Résumé de votre personnage à la fin du chapitre 2 :")
     afficher_personnage(joueur)
     print("Fin du Chapitre 2 ! Les cours à Poudlard vont bientôt commencer...")
-
+    input("Appuyer sur ENTREE pour continuer...")
 
 
 
