@@ -16,7 +16,6 @@ def ajouter_objet(joueur, cle, objet):
     joueur[cle].append(objet)
     return joueur
 
-
 def afficher_personnage(joueur):
     print("Profil du personnage:")
     for i in joueur:

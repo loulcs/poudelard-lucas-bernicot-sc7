@@ -1,9 +1,11 @@
 import json
+
 def demander_texte(message):
     texte=input(message).strip()
     while texte=="":
         texte=input(message).strip()
     return texte
+
 def demander_nombre(message, min_val=None, max_val=None):
         valide=False
         while valide==False :

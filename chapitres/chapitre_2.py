@@ -52,7 +52,6 @@ De même, il est interdit d'utiliser la magie en dehors des cours ainsi que d'en
 Enfin, il existe une liste d'objets interdits que Mr Rusard ne manquera pas de vous communiquer.""")
     input("Appuyez sur Entrée pour continuer...")
 
-
 def ceremonie_repartition(joueur):
     questions = [
         (
@@ -79,8 +78,6 @@ def ceremonie_repartition(joueur):
     print(f"Le Choixpeau s’exclame : {maison} !!!")
     print(f"Tu rejoins les élèves de {maison} sous les acclamations !")
 
-
-
 def installation_salle_commune(joueur):
     with open("data/maisons.json", "r", encoding="utf-8") as f:
         maisons = json.load(f)
@@ -95,7 +92,6 @@ def installation_salle_commune(joueur):
     print(emoji,description)
     print(message_installation)
     print("Les couleurs de votre maison : {}".format(", ".join(couleurs)))
-
 
 def lancer_chapitre_2(joueur):
     rencontrer_amis(joueur)

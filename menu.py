@@ -4,6 +4,7 @@ from chapitres.chapitre_2 import lancer_chapitre_2
 from chapitres.chapitre_1 import lancer_chapitre_1
 from utils.input_utils import demander_choix
 from univers.personnage import initialiser_personnage
+
 def afficher_menu_principal():
     print("1. Lancer le Chapitre 1 - L'arrivée dans le monde magique.")
     print("2. Quitter le jeu.")

@@ -1,4 +1,5 @@
 from utils.input_utils import demander_choix
+import random
 
 def actualiser_points_maison(maisons, nom_maison, points):
     if not nom_maison in maisons:
@@ -25,7 +26,7 @@ def afficher_maison_gagnante(maisons):
     if len(gagnant)>1:
         for g in gagnant:
             print("La maison en tête est{}".format(g))
-import random
+
 def repartition_maison(joueur,questions):
     dico_score={"Gryffondor":0, "Serpentard":0, "Poufsouffle":0, "Serdaigle":0}
     attribut=joueur["Attributs"]

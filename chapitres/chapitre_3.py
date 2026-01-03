@@ -37,7 +37,6 @@ def apprendre_sorts(joueur, chemin_fichier="data/sort.json"):
 
     return joueur
 
-
 def quiz_magie(joueur, chemin_fichier="data/quiz.magie.json"):
     with open(chemin_fichier, "r", encoding="utf-8") as f:
         questions = json.load(f)
@@ -65,7 +64,6 @@ def quiz_magie(joueur, chemin_fichier="data/quiz.magie.json"):
     print("Score obtenu : {} points".format(score_quiz))
     print("La maison {} gagne {} points !".format(joueur["Maison"], score_quiz))
     return score_quiz
-
 
 def lancer_chapitre_3(joueur, maisons):
     apprendre_sorts(joueur,"data/sort.json")

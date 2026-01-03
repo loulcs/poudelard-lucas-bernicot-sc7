@@ -4,8 +4,7 @@ from utils.input_utils import demander_nombre
 from utils.input_utils import demander_choix
 from univers.personnage import modifier_argent
 from univers.personnage import ajouter_objet
-
-
+import json
 
 def introduction():
     print("Bienvenue dans le monde magique de Poudlard ! ")
@@ -48,8 +47,6 @@ def renconter_hagrid(personnage):
    else:
        print("C'est parti")
    input("Appuyer sur ENTREE pour continuer...")
-
-import json
 
 def acheter_fournitures(personnage):
     with open("data/inventaire.json", "r", encoding="utf-8") as f:

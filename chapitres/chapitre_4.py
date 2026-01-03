@@ -1,16 +1,14 @@
 import json
 import random
 from univers import maison
-from utils.input_utils import demander_nombre
-from utils.input_utils import demander_choix
+from utils.input_utils import demander_nombre, demander_choix
 from univers.maison import actualiser_points_maison, afficher_maison_gagnante
 from univers.personnage import afficher_personnage
-
 
 def creer_equipe(maison,equipe_data,est_joueur=False,joueur=None):
     equipe = {"nom": maison,'score': 0,'a_marque': 0,'a_stoppe': 0, 'attrape_vifdor': False,'joueurs': []}
     nouveau_joueurs=[]
-    equipe_joueur = equipe_data[maison]['joueurs']
+    equipe_joueur = equipe_data['joueurs']
     if est_joueur==True and joueur is not None:
         nouveau_joueurs.append("{} {} (Attrapeur) ".format(joueur['Prenom'],joueur['Nom']))
         for elem in equipe_joueur[1:]:
@@ -20,7 +18,6 @@ def creer_equipe(maison,equipe_data,est_joueur=False,joueur=None):
             nouveau_joueurs.append(elem)
     equipe['joueurs'] = nouveau_joueurs
     return equipe
-
 
 def tentative_marque(equipe_attaque,equipe_defense,joueur_est_joueur=False):
     proba_but=random.randint(1,10)
@@ -37,7 +34,6 @@ def tentative_marque(equipe_attaque,equipe_defense,joueur_est_joueur=False):
         equipe_defense['a_stoppe']+=1
         print(equipe_defense['nom'],"bloque l'attaque !")
 
-
 def apparition_vifdor():
     vifdor=False
     nombre=random.randint(1,6)
@@ -45,30 +41,27 @@ def apparition_vifdor():
         vifdor=True
     return vifdor
 
-
 def attraper_vifdor(e1, e2):
-    noms_equipes = [e1['nom'], e2['nom']]
-    equipe_gagnante = random.choice(noms_equipes)
+    equipe_gagnante = random.choice([e1, e2])
     equipe_gagnante['attrape_vifdor'] = True
     equipe_gagnante['score'] += 150
+    print("Le Vif d'Or a été attrapé par {} ! (+150 points)".format(equipe_gagnante['nom']))
     return equipe_gagnante
 
-
-def afficher_score(e1,e2):
-    print("Score actuel:")
-    point_actuel=e1['score']
-    point_actuels=e2['score']
-    print(e1['nom'],":",point_actuel,"points",'\n',e2['nom'],":",point_actuels,"points")
+def afficher_score(e1, e2):
+    print("Score actuel :")
+    print("→ {} : {} points".format(e1['nom'], e1['score']))
+    print("→ {} : {} points".format(e2['nom'], e2['score']))
 
 def afficher_equipe(maison, equipe):
     print("Équipe de", maison, ":")
     for joueur in equipe['joueurs']:
         print("-", joueur)
 
-
 def match_quidditch(joueur,maisons):
-    with (open ("data/equipes_quidditch.json",'r')as f):
-        equipe=json.load(f)
+    with open("data/equipes_quidditch.json", "r", encoding="utf-8") as f:
+        equipe = json.load(f)
+
     maison_aleatoire=['Gryffondor','Serpentard','Serdaigle','Poufsouffle']
     maison_joueurs=joueur["Maison"]
     for i in range(len(maison_aleatoire)):
@@ -76,50 +69,53 @@ def match_quidditch(joueur,maisons):
             del maison_aleatoire[i]
             break
     maison_adverse = random.choice(maison_aleatoire)
-    equipe_joueur = creer_equipe(maison_joueurs, equipe, est_joueur=True, joueur=joueur)
-    equipe_adverse = creer_equipe(maison_adverse, equipe)
+    equipe_joueur = creer_equipe(maison_joueurs, equipe[maison_joueurs], True, joueur)
+    equipe_adverse = creer_equipe(maison_adverse, equipe[maison_adverse])
     print("Équipe du joueur :")
     afficher_equipe(maison_joueurs,equipe_joueur)
     print("Équipe adverse :")
     afficher_equipe(maison_adverse,equipe_adverse)
+    print("""Tu joues pour {} en tant qu' Attrapeur""".format(maison_joueurs))
+
     print("Le rôle de l'attrapeur est de récupérer le Vif d'Or, ce qui mettra fin immédiatement au match et fera gagner 150 points à sa maison !")
+    Tour = 1
+    vifdor_attrape = False
+    while Tour <= 20 and not vifdor_attrape:
+        print("Tour {}".format(Tour))
+        afficher_score(equipe_joueur, equipe_adverse)
 
-    Tour=1
-    gagnant_vifdor = None
-    while Tour<20 :
-        print("Tour",Tour)
-        afficher_score(equipe_joueur,equipe_adverse)
-        tentative_marque(equipe_joueur,equipe_adverse,True)
-        tentative_marque(equipe_adverse, equipe_joueur)
+        tentative_marque(equipe_joueur, equipe_adverse, True)
+        tentative_marque(equipe_adverse, equipe_joueur, False)
 
-        if apparition_vifdor()==True:
+        if apparition_vifdor():
             print("Le Vif d'Or est apparu !")
             gagnant_vifdor = attraper_vifdor(equipe_joueur, equipe_adverse)
-            print("Le match est terminé, le Vif d'Or a été attrapé par", gagnant_vifdor['nom'])
+            print("Le Vif d'Or a été attrapé par {} ! (+150 points)".format(gagnant_vifdor['nom']))
             break
-        input("Appuyez sur ENTREE pour continuer...")
-        Tour+=1
-    print("Score Final :")
-    afficher_score(equipe_joueur,equipe_adverse)
-    if gagnant_vifdor is not None:
-        maison_gagnante = gagnant_vifdor['nom']
-        points = 150
+        input("Appuyez sur Entrée pour continuer...")
+        Tour += 1
+
+    afficher_score(equipe_joueur, equipe_adverse)
+
+    if vifdor_attrape:
+        maison_gagnante = gagnant_vifdor["nom"]
+        points = gagnant_vifdor["score"]
     else:
-        if equipe_joueur['score'] > equipe_adverse['score']:
-            maison_gagnante = maison_joueur
-            points = equipe_joueur['score'] + 500
-        elif equipe_adverse['score'] > equipe_joueur['score']:
-            maison_gagnante = maison_adverse
-            points = equipe_adverse['score'] + 500
+        if equipe_joueur["score"] > equipe_adverse["score"]:
+            maison_gagnante = equipe_joueur["nom"]
+            points = equipe_joueur["score"]
+        elif equipe_adverse["score"] > equipe_joueur["score"]:
+            maison_gagnante = equipe_adverse["nom"]
+            points = equipe_adverse["score"]
         else:
-            print("Match nul ! Aucun bonus de 500 points attribué.")
+            print("Match nul !")
             maison_gagnante = None
-            points = 0
+            points = equipe_joueur["score"]
+
     if maison_gagnante:
-        actualiser_points_maison(maisons, maison_gagnante, points)
-        print(f"La maison gagnante est {maison_gagnante} avec {points} points !")
-    else:
-        print("Aucune maison ne remporte le match.")
+        points_totaux = points + 500
+        actualiser_points_maison(maisons, maison_gagnante, points_totaux)
+        print("La maison gagnante est {} avec {} points !".format(maison_gagnante, points_totaux))
 
 def lancer_chapitre_4_quidditch(joueur,maisons):
         print("Epreuve Quidditch")
