@@ -229,24 +229,139 @@ Affichage :
 Score obtenu : 25 points
 
 Chapitre 4 – Quidditch
+Affichage :
+Match de Quidditch : Gryffondor vs Serdaigle !
 
 Affichage :
-Epreuve Quidditch
-Tu joues pour Poufsouffle en tant qu’Attrapeur
+Tu joues pour Gryffondor en tant qu’Attrapeur.
+
+━━━ Tour 1 ━━━
 
 Affichage :
-Tour 1 → Appuyez sur Entrée
+Serdaigle attaque…
+Gryffondor bloque l’attaque !
+
+Affichage :
+Gryffondor attaque…
+Serdaigle bloque l’attaque !
+
+Affichage :
+Score actuel :
+→ Gryffondor : 0 points
+→ Serdaigle : 0 points
+
+Affichage :
+Le Vif d’Or n’apparaît pas.
+
+Affichage :
+Appuyez sur Entrée pour continuer
 Saisie utilisateur : ENTREE
 
-(…)
+━━━ Tour 2 ━━━
 
 Affichage :
-Tour 11
-Le Vif d'Or est apparu !
-Le Vif d'Or a été attrapé par Gryffondor !
+Harry Potter (Attrapeur) marque un but pour Gryffondor ! (+10 points)
 
 Affichage :
+Serdaigle attaque…
+Gryffondor bloque l’attaque !
+
+Affichage :
+Score actuel :
+→ Gryffondor : 10 points
+→ Serdaigle : 0 points
+
+Affichage :
+Le Vif d’Or n’apparaît pas.
+
+Affichage :
+Appuyez sur Entrée pour continuer
+Saisie utilisateur : ENTREE
+
+━━━ Tour 3 ━━━
+
+Affichage :
+Serdaigle marque un but ! (+10 points)
+
+Affichage :
+Gryffondor attaque…
+Serdaigle bloque l’attaque !
+
+Affichage :
+Score actuel :
+→ Gryffondor : 10 points
+→ Serdaigle : 10 points
+
+Affichage :
+Le Vif d’Or n’apparaît pas.
+
+Affichage :
+Appuyez sur Entrée pour continuer
+Saisie utilisateur : ENTREE
+
+━━━ Tour 4 ━━━
+
+Affichage :
+Harry Potter (Attrapeur) marque un but pour Gryffondor ! (+10 points)
+
+Affichage :
+Serdaigle attaque…
+Gryffondor bloque l’attaque !
+
+Affichage :
+Score actuel :
+→ Gryffondor : 20 points
+→ Serdaigle : 10 points
+
+Affichage :
+Le Vif d’Or n’apparaît pas.
+
+Affichage :
+Appuyez sur Entrée pour continuer
+Saisie utilisateur : ENTREE
+
+━━━ Tour 5 ━━━
+
+Affichage :
+Serdaigle attaque…
+Serdaigle marque un but ! (+10 points)
+
+Affichage :
+Gryffondor attaque…
+Serdaigle bloque l’attaque !
+
+Affichage :
+Score actuel :
+→ Gryffondor : 20 points
+→ Serdaigle : 20 points
+
+Affichage :
+ Le Vif d’Or apparaît ! 
+
+Affichage :
+Le Vif d’Or a été attrapé par Serdaigle ! (+150 points)
+
 Fin du match
+
+Affichage :
+Fin du match !
+
+Affichage :
+Score final :
+→ Gryffondor : 20 points
+→ Serdaigle : 170 points
+
+Affichage :
+Résultat final :
+Le Vif d’Or a été attrapé par Serdaigle !
++150 points pour Serdaigle ! Total : 170 points.
+
+Affichage :
+Serdaigle remporte le match !
++500 points pour Serdaigle !
+
+Affichage :
+Total maison Serdaigle : 670 points
 Fin du Chapitre 4
 Félicitations, vous avez terminé votre aventure à Poudlard 
 

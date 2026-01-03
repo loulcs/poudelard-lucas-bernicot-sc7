@@ -74,3 +74,4 @@ def lancer_chapitre_3(joueur, maisons):
     print("Fin du Chapitre 3 ! Les cours continuent à Poudlard...")
     input("Appuyez sur ENTREE pour continuer...")
 
+

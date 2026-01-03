@@ -60,3 +60,4 @@ def repartition_maison(joueur,questions):
 
 
 
+
