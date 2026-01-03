@@ -6,6 +6,7 @@ from univers.personnage import modifier_argent
 from univers.personnage import ajouter_objet
 import json
 
+
 def introduction():
     print("Bienvenue dans le monde magique de Poudlard ! ")
     print("Vous êtes un jeune sorcier qui s'apprête à vivre sa première année à Poudlard.")
